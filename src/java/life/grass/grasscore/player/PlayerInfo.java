@@ -21,9 +21,9 @@ public class PlayerInfo {
         return new KnowledgeRank(knowledgeStats.getKnowledgePointMap().get(knowledge));
     }
 
-    private class KnowledgeRank{
-        private int rankNum;
-        private String rankName;
+    public class KnowledgeRank{
+        public int rankNum;
+        public String rankName;
 
         public KnowledgeRank(int rankNum){
             this.rankNum = rankNum;
