@@ -18,7 +18,7 @@ public class PlayerInfo {
     }
 
     public KnowledgeRank getKnowledgeRank(Knowledge knowledge){
-        return new KnowledgeRank(knowledgeStats.getKnowledgePointMap().get(knowledge));
+        return new KnowledgeRank(knowledgeStats.getKnowledgePointMap().get(knowledge)/10000);
     }
 
     public Player getPlayer(){
