@@ -7,7 +7,6 @@ public class KnowledgeManager {
     private List<Knowledge> knowledgeList = new ArrayList<>();
 
     public static KnowledgeManager instance = new KnowledgeManager();
-
     public KnowledgeManager() {}
 
     public void registerKnowledge(String name, double rate) {

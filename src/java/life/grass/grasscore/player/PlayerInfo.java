@@ -11,14 +11,18 @@ public class PlayerInfo {
 
     public KnowledgeStats knowledgeStats;
 
-    public PlayerInfo(Player player, UUID uuid){
+    public PlayerInfo(Player player){
         this.player = player;
-        this.uuid = uuid;
+        this.uuid = player.getUniqueId();
         knowledgeStats = new KnowledgeStats(player);
     }
 
     public KnowledgeRank getKnowledgeRank(Knowledge knowledge){
         return new KnowledgeRank(knowledgeStats.getKnowledgePointMap().get(knowledge));
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     public class KnowledgeRank{
