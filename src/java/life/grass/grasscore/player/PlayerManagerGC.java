@@ -14,6 +14,9 @@ public class PlayerManagerGC {
     public void registerPlayer(Player player){
         playerInfoList.add(new PlayerInfo(player));
     }
+    public void unregisterPlayer(Player player){
+        playerInfoList.remove(getPlayerInfo(player));
+    }
 
     public List<PlayerInfo> getPlayerInfoList(){
         return playerInfoList;

@@ -2,6 +2,7 @@ package life.grass.grasscore;
 
 import life.grass.grasscore.knowledge.BaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
+import life.grass.grasscore.player.event.PlayerJoinEventGC;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,7 @@ public class Grasscore extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(new PlayerJoinEventGC(), this);
         Stream.of(BaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getRate()));
     }
 
