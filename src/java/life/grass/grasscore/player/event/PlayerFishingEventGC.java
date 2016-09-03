@@ -12,6 +12,9 @@ import org.bukkit.event.player.PlayerLoginEvent;
 public class PlayerFishingEventGC implements Listener {
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event){
-        System.out.println("FISH!!");
+        if (event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
+            System.out.println("FISH!!");
+        }
+
     }
 }
