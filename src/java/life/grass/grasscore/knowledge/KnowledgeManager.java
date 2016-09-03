@@ -9,8 +9,14 @@ public class KnowledgeManager {
     public static KnowledgeManager instance = new KnowledgeManager();
     public KnowledgeManager() {}
 
-    public void registerKnowledge(String name, double rate) {
-        knowledgeList.add(new Knowledge(name, rate));
+    public List<String> getKnowledgeNameList(){
+        List<String> knowledgeNameList = new ArrayList<>();
+        knowledgeList.forEach(k -> knowledgeNameList.add(k.getName()));
+        return knowledgeNameList;
+    }
+
+    public void registerKnowledge(String name, String label, double rate) {
+        knowledgeList.add(new Knowledge(name, label, rate));
     }
 
     public List<Knowledge> getKnowledgeList() {

@@ -25,6 +25,10 @@ public class PlayerInfo {
         return player;
     }
 
+    public UUID getUUID(){
+        return uuid;
+    }
+
     public class KnowledgeRank{
         public int rankNum;
         public String rankName;
