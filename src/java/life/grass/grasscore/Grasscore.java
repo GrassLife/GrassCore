@@ -1,5 +1,6 @@
 package life.grass.grasscore;
 
+import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,7 +12,7 @@ public class Grasscore extends JavaPlugin {
 
     @Override
     public void onEnable(){
-
+        getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(),this);
     }
 
     @Override
