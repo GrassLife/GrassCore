@@ -44,6 +44,23 @@ public class KnowledgeStats {
         theoryPoint.put(knowledge, value);
     }
 
+    public String getKnowledgePointString(){
+        String str = "";
+        for(Map.Entry<Knowledge, Integer> k : knowledgePoint.entrySet()){
+            str += ", " + k.getKey().getName() + " = " + k.getValue().toString();
+        }
+        str = str.replaceFirst(", ", "");
+        return str;
+    }
+    public String getTheoryPointString(){
+        String str = "";
+        for(Map.Entry<Knowledge, Integer> k : theoryPoint.entrySet()){
+            str += ", " + k.getKey().getName() + " = " + k.getValue().toString();
+        }
+        str = str.replaceFirst(", ", "");
+        return str;
+    }
+
     public void increaseTheoryPoint(Knowledge knowledge, int value){
 
     }

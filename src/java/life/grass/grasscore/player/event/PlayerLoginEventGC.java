@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.sql.*;
 
 public class PlayerLoginEventGC implements Listener {
@@ -27,22 +28,24 @@ public class PlayerLoginEventGC implements Listener {
                 String theorySQL = "insert into theory(uuid) value(\'" + playerInfo.getUUID().toString() + "\')";
                 statement.executeUpdate(knowledgeSQL);
                 statement.executeUpdate(theorySQL);
-                knowledgeResultSet.close();
             } else{
+                Statement statement2 = connection.createStatement();
                 sql = "select * from knowledge where uuid=\'" + playerInfo.getUUID().toString() + "\'";
-                ResultSet theoryResultSet = statement.executeQuery(sql);
+                ResultSet theoryResultSet = statement2.executeQuery(sql);
                 theoryResultSet.next();
                 KnowledgeManager.instance.getKnowledgeList().forEach(k -> {
                     try {
+                        System.out.println(k.getName());
                         playerInfo.knowledgeStats.setKnowledgePoint(k, knowledgeResultSet.getInt(k.getName()));
-                        playerInfo.knowledgeStats.setTheoryPoint(k, knowledgeResultSet.getInt(k.getName()));
+                        playerInfo.knowledgeStats.setTheoryPoint(k, theoryResultSet.getInt(k.getName()));
                     } catch (SQLException e){
                         e.printStackTrace();
                         event.getPlayer().kickPlayer("データベース取得でエラーが発生しました。管理者に問い合わせてください");
                     }
                 });
+                theoryResultSet.close();
             }
-
+            knowledgeResultSet.close();
         } catch (SQLException e){
             e.printStackTrace();
             event.getPlayer().kickPlayer("データベース取得でエラーが発生しました。管理者に問い合わせてください");
