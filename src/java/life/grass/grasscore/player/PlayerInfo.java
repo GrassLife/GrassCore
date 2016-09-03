@@ -6,10 +6,10 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class PlayerInfo {
-    public Player player;
-    public UUID uuid;
+    private Player player;
+    private UUID uuid;
 
-    public KnowledgeStats knowledgeStats;
+    private KnowledgeStats knowledgeStats;
 
     public PlayerInfo(Player player){
         this.player = player;
@@ -27,6 +27,10 @@ public class PlayerInfo {
 
     public UUID getUUID(){
         return uuid;
+    }
+
+    public KnowledgeStats getKnowledgeStats(){
+        return knowledgeStats;
     }
 
     public class KnowledgeRank{

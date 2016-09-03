@@ -19,6 +19,10 @@ public class KnowledgeManager {
         knowledgeList.add(new Knowledge(name, label, rate));
     }
 
+    public Knowledge getKnowledge(String knowledgeName){
+        return knowledgeList.stream().filter(k -> k.getName().equals(knowledgeName)).findFirst().orElse(null);
+    }
+
     public List<Knowledge> getKnowledgeList() {
         return this.knowledgeList;
     }

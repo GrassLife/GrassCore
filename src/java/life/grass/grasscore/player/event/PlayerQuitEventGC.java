@@ -17,14 +17,14 @@ public class PlayerQuitEventGC implements Listener {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "gennpaku7");
             Statement statement = connection.createStatement();
-            String knowledgePointSQL = "update knowledge set " + playerInfo.knowledgeStats.getKnowledgePointString();
-            String theoryPointSQL = "update theory set " + playerInfo.knowledgeStats.getTheoryPointString();
+            String knowledgePointSQL = "update knowledge set " + playerInfo.getKnowledgeStats().getKnowledgePointString();
+            String theoryPointSQL = "update theory set " + playerInfo.getKnowledgeStats().getTheoryPointString();
             String tmp = " where uuid=\'" + playerInfo.getUUID().toString() + "\'";
             knowledgePointSQL += tmp;
             theoryPointSQL += tmp;
             statement.executeUpdate(knowledgePointSQL);
             statement.executeUpdate(theoryPointSQL);
-            System.out.println("done");
+//            System.out.println("done");
         } catch (SQLException e){
             e.printStackTrace();
             event.getPlayer().kickPlayer("データベース保存でエラーが発生しました。管理者に問い合わせてください");

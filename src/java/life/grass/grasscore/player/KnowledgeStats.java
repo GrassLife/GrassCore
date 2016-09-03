@@ -31,13 +31,13 @@ public class KnowledgeStats {
         return theoryPoint;
     }
 
-    private int getKnowledgePoint(Knowledge knowledge){
+    public int getKnowledgePoint(Knowledge knowledge){
         return knowledgePoint.get(knowledge);
     }
     public void setKnowledgePoint(Knowledge knowledge, int value){
         knowledgePoint.put(knowledge, value);
     }
-    private int getTheoryPoint(Knowledge knowledge){
+    public int getTheoryPoint(Knowledge knowledge){
         return theoryPoint.get(knowledge);
     }
     public void setTheoryPoint(Knowledge knowledge, int value){
@@ -61,6 +61,11 @@ public class KnowledgeStats {
         return str;
     }
 
+    public void increaseKnowledgePoint(Knowledge knowledge, int value){
+        int currentKnowledgePoint = knowledgePoint.get(knowledge);
+        int currentTheoryPoint = theoryPoint.get(knowledge);
+        knowledgePoint.put(knowledge, currentKnowledgePoint+((int)(value/knowledge.getRate()*(1+currentTheoryPoint/100.0))));
+    }
     public void increaseTheoryPoint(Knowledge knowledge, int value){
 
     }
