@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Grasscore">
-    <output-path>$PROJECT_DIR$/out/artifacts/Grasscore</output-path>
-    <root id="archive" name="Grasscore.jar">
-      <element id="module-output" name="Grasscore" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/resouces/plugin.yml" />
-    </root>
-  </artifact>
-</component>
