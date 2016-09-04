@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.sql.*;
 
 public class PlayerLoginEventGC implements Listener {
