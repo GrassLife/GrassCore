@@ -9,6 +9,8 @@ public class PlayerInfo {
     private Player player;
     private UUID uuid;
 
+    private int lifespan = 100000;
+
     private KnowledgeStats knowledgeStats;
 
     public PlayerInfo(Player player){
@@ -31,6 +33,22 @@ public class PlayerInfo {
 
     public KnowledgeStats getKnowledgeStats(){
         return knowledgeStats;
+    }
+
+    public int getLifespan() {
+        return lifespan;
+    }
+
+    public void setLifespan(int lifespan) {
+        this.lifespan = lifespan;
+    }
+
+    public void extendLifespan(int value) {
+        lifespan += value;
+    }
+
+    public void shortenLifespan(int value){
+        lifespan -= value;
     }
 
     public class KnowledgeRank{
