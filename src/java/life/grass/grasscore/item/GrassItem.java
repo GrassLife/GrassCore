@@ -33,6 +33,14 @@ public class GrassItem extends ItemStack {
         this.setId(Integer.getInteger(lore.get(0)));
     }
 
+    public ArrayList<ItemTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<ItemTag> tags) {
+        this.tags = tags;
+    }
+
     public int getId() {
         return id;
     }
@@ -55,6 +63,15 @@ public class GrassItem extends ItemStack {
 
     public void setRarity(int rarity) {
         this.rarity = rarity;
+    }
+
+    public ItemTag readTag(Class tagClass) {
+        for(ItemTag tag: getTags()) {
+            if(tagClass.isAssignableFrom(tag.getClass())) {
+                return tag;
+            }
+        }
+        return null;
     }
 
     public ItemStack toItemStack() {
