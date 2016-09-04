@@ -15,7 +15,7 @@ public class PlayerFishingEventGC implements Listener {
             Knowledge knowledge = KnowledgeManager.instance.getKnowledge("FISHING");
             PlayerInfo playerInfo = PlayerManagerGC.instance.getPlayerInfo(event.getPlayer());
             playerInfo.getKnowledgeStats().increaseKnowledgePoint(knowledge, 1);
-            System.out.println("fishing = " + playerInfo.getKnowledgeStats().getKnowledgePointMap().get(knowledge).toString());
+//            System.out.println("fishing = " + playerInfo.getKnowledgeStats().getKnowledgePointMap().get(knowledge).toString());
         }
     }
 }

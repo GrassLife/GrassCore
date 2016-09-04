@@ -35,7 +35,7 @@ public class PlayerLoginEventGC implements Listener {
                 theoryResultSet.next();
                 KnowledgeManager.instance.getKnowledgeList().forEach(k -> {
                     try {
-                        System.out.println(k.getName());
+//                        System.out.println(k.getName());
                         playerInfo.getKnowledgeStats().setKnowledgePoint(k, knowledgeResultSet.getInt(k.getName()));
 //                        System.out.println(playerInfo.getKnowledgeStats().getKnowledgePoint(k));
                         playerInfo.getKnowledgeStats().setTheoryPoint(k, theoryResultSet.getInt(k.getName()));

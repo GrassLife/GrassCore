@@ -7,15 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21761847-385d-4611-b673-80d7c931ed42" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Grasscore_jar/Grasscore.jar" afterPath="$PROJECT_DIR$/out/artifacts/Grasscore_jar/Grasscore.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/Grasscore.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/Grasscore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/knowledge/KnowledgeManager.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/knowledge/KnowledgeManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/KnowledgeStats.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/KnowledgeStats.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/PlayerInfo.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/PlayerInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerQuitEventGC.java" afterPath="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerQuitEventGC.java" />
     </list>
     <ignored path="Grasscore.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerFishingEventGC.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java">
+      <file leaf-file-name="PlayerLoginEventGC.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+            <state relative-caret-position="552">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,8 +124,8 @@
       <file leaf-file-name="Grasscore.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/Grasscore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+            <state relative-caret-position="465">
+              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -438,8 +432,8 @@
         <option value="$PROJECT_DIR$/src/java/life/grass/grasscore/player/PlayerInfo.java" />
         <option value="$PROJECT_DIR$/src/java/life/grass/grasscore/player/KnowledgeStats.java" />
         <option value="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerQuitEventGC.java" />
-        <option value="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java" />
         <option value="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java" />
+        <option value="$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java" />
       </list>
     </option>
   </component>
@@ -949,7 +943,14 @@
       <option name="project" value="LOCAL" />
       <updated>1472925676882</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="[add]釣りナレッジが成長するようになったぞ！">
+      <created>1472930494699</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1472930494699</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1005,7 +1006,8 @@
     <MESSAGE value="[add]PlayerJoinEventの登録" />
     <MESSAGE value="[add]ログイン時データベース登録(読み込み)処理の追加" />
     <MESSAGE value="[add]ログアウト時データベース登録処理の追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add]ログアウト時データベース登録処理の追加" />
+    <MESSAGE value="[add]釣りナレッジが成長するようになったぞ！" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add]釣りナレッジが成長するようになったぞ！" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1148,14 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/knowledge/BaseKnowledge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLogoutEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1228,26 +1222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="35" column="75" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/Grasscore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/PlayerManagerGC.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1260,6 +1234,34 @@
             <element signature="e#534#535#0" expanded="true" />
             <element signature="e#584#585#0" expanded="true" />
             <element signature="e#621#622#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/Grasscore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/knowledge/BaseKnowledge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1277,10 +1279,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerFishingEventGC.java">
+    <entry file="file://$PROJECT_DIR$/src/java/life/grass/grasscore/player/event/PlayerLoginEventGC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        <state relative-caret-position="552">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
