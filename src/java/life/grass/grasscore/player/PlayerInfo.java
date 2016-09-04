@@ -8,7 +8,6 @@ import java.util.UUID;
 public class PlayerInfo {
     private Player player;
     private UUID uuid;
-
     private int lifespan = 100000;
 
     private KnowledgeStats knowledgeStats;
@@ -41,10 +40,6 @@ public class PlayerInfo {
 
     public void setLifespan(int lifespan) {
         this.lifespan = lifespan;
-    }
-
-    public void extendLifespan(int value) {
-        lifespan += value;
     }
 
     public void shortenLifespan(int value){
