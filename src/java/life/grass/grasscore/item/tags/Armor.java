@@ -1,5 +1,6 @@
 package life.grass.grasscore.item.tags;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import life.grass.grasscore.item.type.ArmorType;
 
@@ -7,9 +8,9 @@ import life.grass.grasscore.item.type.ArmorType;
  * Created by Ecila on 2016/09/03.
  */
 public class Armor implements ItemTag {
-    int defense;
-    int protection;
-    ArmorType type;
+    private int defense;
+    private int protection;
+    private ArmorType type;
 
     public int getDefense() {
         return defense;
@@ -37,10 +38,7 @@ public class Armor implements ItemTag {
 
     @Override
     public String toJson() {
-        JsonObject json = new JsonObject();
-        json.addProperty("defense", this.getDefense());
-        json.addProperty("protection", this.getProtection());
-        json.addProperty("type", this.getType().toString());
-        return json.toString();
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

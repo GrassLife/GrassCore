@@ -2,6 +2,7 @@ package life.grass.grasscore.item;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import life.grass.grasscore.item.tags.ItemTag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -15,11 +16,21 @@ public class GrassItem extends ItemStack {
     private int id;
     private String[] info;
     private int rarity;
-    //private ArrayList<Enchant> enchants;
-    //private ArrayList<ItemTag> tags;
+    private ArrayList<ItemTag> tags = new ArrayList<>();
 
-    private GrassItem(ItemStack item) {
+    /**
+     * ItemStackからGrassItemを生成します。ItemStackのLoreにあるJson情報を解析します。
+     * @param item
+     */
+    public GrassItem(ItemStack item) {
         super(item);
+
+        ItemMeta meta = item.getItemMeta();
+        if(meta.hasLore()) {
+            //バニラアイテムの処理
+        }
+        List<String> lore = meta.getLore();
+        this.setId(Integer.getInteger(lore.get(0)));
     }
 
     public int getId() {
