@@ -1,3 +1,7 @@
 name: Grasscore
 main: life.grass.grasscore.Grasscore
 version: 1.0.0
+commands:
+  grasscore:
+    description: Test
+    usage: Test

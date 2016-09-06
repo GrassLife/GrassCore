@@ -1,6 +1,7 @@
 package life.grass.grasscore.item;
 
 import com.google.gson.*;
+import life.grass.grasscore.Grasscore;
 import life.grass.grasscore.item.tags.*;
 
 import java.lang.reflect.Type;
@@ -18,43 +19,48 @@ public class ItemTagAdapter implements JsonSerializer<ItemTag>, JsonDeserializer
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
         String className = prim.getAsString();
         Class<?> klass;
-        switch (className) {
-            case "Armor":
-                klass = Armor.class;
-                break;
-            case "CraftMaterial":
-                klass = CraftMaterial.class;
-                break;
-            case "Damageable":
-                klass = Damageable.class;
-                break;
-            case "Eatable":
-                klass = Eatable.class;
-                break;
-            case "Elementable":
-                klass = Elementable.class;
-                break;
-            case "FoodMaterial":
-                klass = FoodMaterial.class;
-                break;
-            case "Tool":
-                klass = Tool.class;
-                break;
-            case "Weapon":
-                klass = Weapon.class;
-                break;
-
-            default:
-                throw new JsonParseException("class not found. className=" + className);
+        try {
+            klass = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new JsonParseException(e.getMessage());
         }
-
+//        switch (className) {
+//            case "life.grass.grasscore.item.tags.Armor":
+//                klass = Armor.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.CraftMaterial":
+//                klass = CraftMaterial.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.Damageable":
+//                klass = Damageable.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.Eatable":
+//                klass = Eatable.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.Elementable":
+//                klass = Elementable.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.FoodMaterial":
+//                klass = FoodMaterial.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.Tool":
+//                klass = Tool.class;
+//                break;
+//            case "life.grass.grasscore.item.tags.Weapon":
+//                klass = Weapon.class;
+//                break;
+//
+//            default:
+//                throw new JsonParseException("class not found. className=" + className);
+//        }
         return context.deserialize(jsonObject.get(INSTANCE), klass);
     }
 
     @Override
     public JsonElement serialize(ItemTag src, Type typeOfSrc, JsonSerializationContext context) throws JsonParseException {
         JsonObject retValue = new JsonObject();
-        String className = src.getClass().getSimpleName();
+        String className = src.getClass().getName();
         retValue.addProperty(CLASSNAME, className);
         JsonElement elem = context.serialize(src);
         retValue.add(INSTANCE, elem);

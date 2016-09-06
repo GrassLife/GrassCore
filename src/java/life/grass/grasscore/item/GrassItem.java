@@ -1,9 +1,7 @@
 package life.grass.grasscore.item;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
+import life.grass.grasscore.Grasscore;
 import life.grass.grasscore.item.tags.ItemTag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -28,11 +26,21 @@ public class GrassItem extends ItemStack {
         super(item);
 
         ItemMeta meta = item.getItemMeta();
-        if(meta.hasLore()) {
+        if(!meta.hasLore()) {
             //バニラアイテムの処理
+        } else {
+            List<String> lore = meta.getLore();
+            Gson gson = new Gson();
+            Gson tagGson = new GsonBuilder().registerTypeAdapter(ItemTag.class, new ItemTagAdapter()).create();
+            // 静的タグの読み込み
+            this.setId(Integer.parseInt(lore.get(0)));
+            JsonObject body = gson.fromJson(lore.get(1), JsonObject.class);
+            this.setRarity(body.get("rarity").getAsInt());
+            this.setInfo(gson.fromJson(body.get("info"), String[].class));
+            // ItemTagの読み込み
+            JsonArray tagContents = body.get("tags").getAsJsonArray();
+            tagContents.forEach( tag -> tags.add(tagGson.fromJson(tag, ItemTag.class)));
         }
-        List<String> lore = meta.getLore();
-        this.setId(Integer.getInteger(lore.get(0)));
     }
 
     public ArrayList<ItemTag> getTags() {
@@ -85,15 +93,15 @@ public class GrassItem extends ItemStack {
         JsonObject json = new JsonObject();
         // 静的タグの書き込み
         json.addProperty("rarity", this.rarity);
-        json.addProperty("info", gson.toJson(getInfo()));
+        json.add("info", gson.toJsonTree(getInfo()).getAsJsonArray());
         // ItemTagの書き込み
         JsonArray tagArray = new JsonArray();
-        tags.forEach( tag -> tagArray.add(tagGson.toJsonTree(tag)));
+        tags.forEach( tag -> tagArray.add(new JsonParser().parse(tagGson.toJson(tag, ItemTag.class))));
         json.add("tags", tagArray);
 
         List<String> lore = new ArrayList<>();
         lore.add(String.valueOf(this.id));
-        lore.add(json.getAsString());
+        lore.add(gson.toJson(json));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
