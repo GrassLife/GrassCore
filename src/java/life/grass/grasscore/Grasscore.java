@@ -20,6 +20,7 @@ public class Grasscore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerLoginEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
+        getServer().getPluginManager().registerEvents(new EntityDeathEventGC(), this);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
             Stream.of(BaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
