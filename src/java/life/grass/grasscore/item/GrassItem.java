@@ -1,6 +1,8 @@
 package life.grass.grasscore.item;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import life.grass.grasscore.item.tags.ItemTag;
 import org.bukkit.inventory.ItemStack;
@@ -76,12 +78,18 @@ public class GrassItem extends ItemStack {
 
     public ItemStack toItemStack() {
         Gson gson = new Gson();
+        Gson tagGson = new GsonBuilder().registerTypeAdapter(ItemTag.class, new ItemTagAdapter()).create();
         ItemStack item = this;
         ItemMeta meta = item.getItemMeta();
 
         JsonObject json = new JsonObject();
+        // 静的タグの書き込み
         json.addProperty("rarity", this.rarity);
         json.addProperty("info", gson.toJson(getInfo()));
+        // ItemTagの書き込み
+        JsonArray tagArray = new JsonArray();
+        tags.forEach( tag -> tagArray.add(tagGson.toJsonTree(tag)));
+        json.add("tags", tagArray);
 
         List<String> lore = new ArrayList<>();
         lore.add(String.valueOf(this.id));
