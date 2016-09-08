@@ -4,26 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KnowledgeManager {
-    private List<Knowledge> knowledgeList = new ArrayList<>();
+    private List<AbstractKnowledge> knowledgeList = new ArrayList<>();
 
     public static KnowledgeManager instance = new KnowledgeManager();
     public KnowledgeManager() {}
 
-    public List<String> getKnowledgeNameList(){
-        List<String> knowledgeNameList = new ArrayList<>();
-        knowledgeList.forEach(k -> knowledgeNameList.add(k.getName()));
-        return knowledgeNameList;
-    }
-
     public void registerKnowledge(String name, String label, double rate) {
-        knowledgeList.add(new Knowledge(name, label, rate));
+        List<BaseKnowledge> tmp = new ArrayList<>();
+        tmp.add(new BaseKnowledge(name, label, rate));
+        knowledgeList.add(new BaseKnowledge(name, label, rate));
     }
 
-    public Knowledge getKnowledge(String knowledgeName){
+    public AbstractKnowledge getKnowledge(String knowledgeName){
         return knowledgeList.stream().filter(k -> k.getName().equals(knowledgeName)).findFirst().orElse(null);
     }
 
-    public List<Knowledge> getKnowledgeList() {
+    public List<? super AbstractKnowledge> getKnowledgeList() {
         return this.knowledgeList;
     }
 }
