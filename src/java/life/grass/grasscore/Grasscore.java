@@ -1,6 +1,7 @@
 package life.grass.grasscore;
 
-import life.grass.grasscore.knowledge.BaseKnowledge;
+import life.grass.grasscore.entity.EntityDeathEventGC;
+import life.grass.grasscore.knowledge.EBaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
 import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import life.grass.grasscore.player.event.PlayerLoginEventGC;
@@ -22,7 +23,7 @@ public class Grasscore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
         getServer().getPluginManager().registerEvents(new EntityDeathEventGC(), this);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
-            Stream.of(BaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
+            Stream.of(EBaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
     }
 
