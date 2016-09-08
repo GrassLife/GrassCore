@@ -1,6 +1,7 @@
 name: Grasscore
 main: life.grass.grasscore.Grasscore
 version: 1.0.0
+depend: [ProtocolLib]
 commands:
   grasscore:
     description: Test
