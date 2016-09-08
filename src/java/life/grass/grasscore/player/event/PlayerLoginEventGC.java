@@ -35,9 +35,9 @@ public class PlayerLoginEventGC implements Listener {
                 KnowledgeManager.instance.getKnowledgeList().forEach(k -> {
                     try {
 //                        System.out.println(k.getName());
-                        playerInfo.getKnowledgeStats().setKnowledgePoint(k, knowledgeResultSet.getInt(k.getName()));
+                        playerInfo.getKnowledgeStats().setKnowledgePoint(k.toString(), knowledgeResultSet.getInt(k.toString()));
 //                        System.out.println(playerInfo.getKnowledgeStats().getKnowledgePoint(k));
-                        playerInfo.getKnowledgeStats().setTheoryPoint(k, theoryResultSet.getInt(k.getName()));
+                        playerInfo.getKnowledgeStats().setTheoryPoint(k.toString(), theoryResultSet.getInt(k.toString()));
                     } catch (SQLException e){
                         e.printStackTrace();
                         event.getPlayer().kickPlayer("データベース取得でエラーが発生しました。管理者に問い合わせてください");

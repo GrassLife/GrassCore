@@ -1,8 +1,10 @@
 package life.grass.grasscore.player;
 
-import life.grass.grasscore.knowledge.Knowledge;
+import life.grass.grasscore.knowledge.BaseKnowledge;
 import org.bukkit.entity.Player;
 
+import java.nio.channels.spi.AbstractSelectionKey;
+import java.util.AbstractCollection;
 import java.util.UUID;
 
 public class PlayerInfo {
@@ -17,7 +19,7 @@ public class PlayerInfo {
         knowledgeStats = new KnowledgeStats(player);
     }
 
-    public KnowledgeRank getKnowledgeRank(Knowledge knowledge){
+    public KnowledgeRank getKnowledgeRank(BaseKnowledge knowledge){
         return new KnowledgeRank(knowledgeStats.getKnowledgePointMap().get(knowledge)/10000);
     }
 

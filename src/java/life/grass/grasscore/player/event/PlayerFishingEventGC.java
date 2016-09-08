@@ -1,6 +1,6 @@
 package life.grass.grasscore.player.event;
 
-import life.grass.grasscore.knowledge.Knowledge;
+import life.grass.grasscore.knowledge.BaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
 import life.grass.grasscore.player.PlayerInfo;
 import life.grass.grasscore.player.PlayerManagerGC;
@@ -12,9 +12,9 @@ public class PlayerFishingEventGC implements Listener {
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event){
         if(event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)){
-            Knowledge knowledge = KnowledgeManager.instance.getKnowledge("FISHING");
+            BaseKnowledge knowledge = (BaseKnowledge)KnowledgeManager.instance.getKnowledge("FISHING");
             PlayerInfo playerInfo = PlayerManagerGC.instance.getPlayerInfo(event.getPlayer());
-            playerInfo.getKnowledgeStats().increaseKnowledgePoint(knowledge, 1);
+            playerInfo.getKnowledgeStats().increaseKnowledgePoint(knowledge.getName(), 1);
 //            System.out.println("fishing = " + playerInfo.getKnowledgeStats().getKnowledgePointMap().get(knowledge).toString());
         }
     }
