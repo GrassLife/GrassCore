@@ -1,6 +1,9 @@
 package life.grass.grasscore;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import life.grass.grasscore.item.GrassItem;
+import life.grass.grasscore.item.ItemPacketRewriter;
 import life.grass.grasscore.item.tags.Armor;
 import life.grass.grasscore.item.tags.ItemTag;
 import life.grass.grasscore.item.type.ArmorType;
@@ -25,6 +28,7 @@ import java.util.stream.Stream;
 public class Grasscore extends JavaPlugin implements CommandExecutor {
     public static Logger log;
     public static PluginManager pluginManager;
+    private ProtocolManager protocolManager;
 
     @Override
     public void onEnable() {
@@ -32,6 +36,8 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
         getServer().getPluginManager().registerEvents(new PlayerQuitEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
         getServer().getPluginManager().registerEvents(new EntityDeathEventGC(), this);
+        protocolManager = ProtocolLibrary.getProtocolManager();
+        ItemPacketRewriter.getInstance().addListener(protocolManager, this);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
             Stream.of(BaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
