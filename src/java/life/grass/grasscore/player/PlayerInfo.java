@@ -46,6 +46,8 @@ public class PlayerInfo {
         lifespan -= value;
     }
 
+
+
     public class KnowledgeRank{
         public int rankNum;
         public String rankName;
