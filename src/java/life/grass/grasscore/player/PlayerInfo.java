@@ -10,6 +10,7 @@ import java.util.UUID;
 public class PlayerInfo {
     private Player player;
     private UUID uuid;
+    private int lifespan = 100000;
 
     private KnowledgeStats knowledgeStats;
 
@@ -34,6 +35,20 @@ public class PlayerInfo {
     public KnowledgeStats getKnowledgeStats(){
         return knowledgeStats;
     }
+
+    public int getLifespan() {
+        return lifespan;
+    }
+
+    public void setLifespan(int lifespan) {
+        this.lifespan = lifespan;
+    }
+
+    public void shortenLifespan(int value){
+        lifespan -= value;
+    }
+
+
 
     public class KnowledgeRank{
         public int rankNum;
