@@ -45,8 +45,10 @@ public class ItemPacketRewriter {
     }
 
     private void rewriteItem(ItemStack item) {
+        if(item == null) { return; }
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.WHITE + "REWRITTEN ITEM");
+        item.setItemMeta(meta);
     }
 
 }
