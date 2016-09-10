@@ -1,6 +1,6 @@
 package life.grass.grasscore;
 
-import life.grass.grasscore.player.event.PlayerFishingEventGC;
+import life.grass.grasscore.fishing.event.PlayerFishingEventGC;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
