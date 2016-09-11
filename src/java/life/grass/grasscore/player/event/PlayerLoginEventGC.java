@@ -25,19 +25,26 @@ public class PlayerLoginEventGC implements Listener {
             if(!(knowledgeResultSet.next())){
                 String knowledgeSQL = "insert into knowledge(uuid) value(\'" + playerInfo.getUUID().toString() + "\')";
                 String theorySQL = "insert into theory(uuid) value(\'" + playerInfo.getUUID().toString() + "\')";
+                String lifespanSQL = "insert into lifespan(uuid) value(\'" + playerInfo.getUUID().toString() + "\')";
                 statement.executeUpdate(knowledgeSQL);
                 statement.executeUpdate(theorySQL);
+                statement.executeUpdate(lifespanSQL);
             } else{
                 Statement statement2 = connection.createStatement();
-                sql = "select * from knowledge where uuid=\'" + playerInfo.getUUID().toString() + "\'";
-                ResultSet theoryResultSet = statement2.executeQuery(sql);
+                Statement statement3 = connection.createStatement();
+                String theorySql = "select * from theory where uuid=\'" + playerInfo.getUUID().toString() + "\'";
+                String lifespanSql = "select * from theory where uuid='" + playerInfo.getUUID().toString() + "\'";
+                ResultSet theoryResultSet = statement2.executeQuery(theorySql);
+                ResultSet lifespanResultSet = statement3.executeQuery(lifespanSql);
                 theoryResultSet.next();
+                lifespanResultSet.next();
                 KnowledgeManager.instance.getKnowledgeList().forEach(k -> {
                     try {
 //                        System.out.println(k.getName());
                         playerInfo.getKnowledgeStats().setKnowledgePoint(k.toString(), knowledgeResultSet.getInt(k.toString()));
 //                        System.out.println(playerInfo.getKnowledgeStats().getKnowledgePoint(k));
                         playerInfo.getKnowledgeStats().setTheoryPoint(k.toString(), theoryResultSet.getInt(k.toString()));
+                        playerInfo.setLifespan(lifespanResultSet.getInt("lifespan"));
                     } catch (SQLException e){
                         e.printStackTrace();
                         event.getPlayer().kickPlayer("データベース取得でエラーが発生しました。管理者に問い合わせてください");
