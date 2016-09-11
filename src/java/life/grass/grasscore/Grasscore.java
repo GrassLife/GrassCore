@@ -14,6 +14,7 @@ import life.grass.grasscore.knowledge.KnowledgeManager;
 import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import life.grass.grasscore.player.event.PlayerLoginEventGC;
 import life.grass.grasscore.player.event.PlayerQuitEventGC;
+import life.grass.grasscore.timer.DataSaveTimer;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -31,6 +33,7 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
     public static Logger log;
     public static PluginManager pluginManager;
     private ProtocolManager protocolManager;
+    private BukkitTask dataSaveTask = null;
 
     @Override
     public void onEnable() {
@@ -40,6 +43,7 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
         getServer().getPluginManager().registerEvents(new EntityDeathEventGC(), this);
         protocolManager = ProtocolLibrary.getProtocolManager();
         ItemPacketRewriter.getInstance().addListener(protocolManager, this);
+        dataSaveTask = this.getServer().getScheduler().runTaskTimer(this, new DataSaveTimer(this), 0L, 20L*60*10);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
             Stream.of(EBaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
@@ -48,7 +52,7 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onDisable() {
-
+        this.getServer().getScheduler().cancelTask(dataSaveTask.getTaskId());
     }
 
     @Override
