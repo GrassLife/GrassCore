@@ -19,11 +19,14 @@ public class PlayerQuitEventGC implements Listener {
             Statement statement = connection.createStatement();
             String knowledgePointSQL = "update knowledge set " + playerInfo.getKnowledgeStats().getKnowledgePointString();
             String theoryPointSQL = "update theory set " + playerInfo.getKnowledgeStats().getTheoryPointString();
+            String lifespanSQL = "update lifespan set \'lifespan\'=" + playerInfo.getLifespan();
             String tmp = " where uuid=\'" + playerInfo.getUUID().toString() + "\'";
             knowledgePointSQL += tmp;
             theoryPointSQL += tmp;
+            lifespanSQL += tmp;
             statement.executeUpdate(knowledgePointSQL);
             statement.executeUpdate(theoryPointSQL);
+            statement.executeUpdate(lifespanSQL);
 //            System.out.println("done");
         } catch (SQLException e){
             e.printStackTrace();
