@@ -2,7 +2,6 @@ package life.grass.grasscore.timer;
 
 import life.grass.grasscore.player.PlayerManagerGC;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataSaveTimer implements Runnable {
-    JavaPlugin plugin;//BukkitのAPIにアクセスするためのJavaPlugin
+    JavaPlugin plugin;
     public DataSaveTimer(JavaPlugin plugin) {
         this.plugin = plugin;
     }

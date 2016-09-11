@@ -7,7 +7,6 @@ import life.grass.grasscore.item.ItemPacketRewriter;
 import life.grass.grasscore.item.tags.Armor;
 import life.grass.grasscore.item.tags.ItemTag;
 import life.grass.grasscore.item.type.ArmorType;
-import life.grass.grasscore.knowledge.BaseKnowledge;
 import life.grass.grasscore.entity.EntityDeathEventGC;
 import life.grass.grasscore.knowledge.EBaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
