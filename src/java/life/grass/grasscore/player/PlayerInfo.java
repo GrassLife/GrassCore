@@ -1,11 +1,13 @@
 package life.grass.grasscore.player;
 
 import life.grass.grasscore.knowledge.BaseKnowledge;
+import life.grass.grasscore.knowledge.EBaseKnowledge;
+
 import org.bukkit.entity.Player;
 
-import java.nio.channels.spi.AbstractSelectionKey;
-import java.util.AbstractCollection;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public class PlayerInfo {
     private Player player;
@@ -21,7 +23,7 @@ public class PlayerInfo {
     }
 
     public KnowledgeRank getKnowledgeRank(BaseKnowledge knowledge){
-        return new KnowledgeRank(knowledgeStats.getKnowledgePointMap().get(knowledge)/10000);
+        return new KnowledgeRank((knowledgeStats.getKnowledgePointMap().get(knowledge)+9999)/10000);
     }
 
     public Player getPlayer(){
@@ -40,15 +42,26 @@ public class PlayerInfo {
         return lifespan;
     }
 
-    public void setLifespan(int lifespan) {
+    public void setLifespan(int lifespan){
         this.lifespan = lifespan;
+    }
+
+    public void resetLifespan() {
+        setLifespan(100000);
     }
 
     public void shortenLifespan(int value){
         lifespan -= value;
     }
 
-
+    public void penaltyKnowledgeStats(){
+        Stream.of(EBaseKnowledge.values()).forEach(b -> {
+            if(true) {  //もし子となるアドバンスド知識がプロフェッショナルでなければ
+                knowledgeStats.demotionKnowledge(b.name());
+            }
+            knowledgeStats.setTheoryPoint(b.name(), 0);
+        });
+    }
 
     public class KnowledgeRank{
         public int rankNum;

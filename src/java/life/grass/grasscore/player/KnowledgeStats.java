@@ -1,10 +1,8 @@
 package life.grass.grasscore.player;
 
-import life.grass.grasscore.knowledge.BaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
 import org.bukkit.entity.Player;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,21 +51,33 @@ public class KnowledgeStats {
         str = str.replaceFirst(", ", "");
         return str;
     }
-    public String getTheoryPointString(){
+    public String getTheoryPointString() {
         String str = "";
-        for(Map.Entry<String, Integer> k : theoryPoint.entrySet()){
+        for (Map.Entry<String, Integer> k : theoryPoint.entrySet()) {
             str += ", " + k.getKey() + " = " + k.getValue().toString();
         }
         str = str.replaceFirst(", ", "");
         return str;
     }
-
     public void increaseKnowledgePoint(String knowledge, int value){
         int currentKnowledgePoint = knowledgePoint.get(knowledge);
+        if(currentKnowledgePoint > 180000)  return;
         int currentTheoryPoint = theoryPoint.get(knowledge);
-        knowledgePoint.put(knowledge, currentKnowledgePoint+((int)(value/((BaseKnowledge)KnowledgeManager.instance.getKnowledge(knowledge)).getRate()*(1+currentTheoryPoint/100.0))));
+        knowledgePoint.put(knowledge, currentKnowledgePoint+((int)(value/(KnowledgeManager.instance.getKnowledge(knowledge)).getRate()*(1+currentTheoryPoint/100.0))));
     }
     public void increaseTheoryPoint(String knowledge, int value){
 
+    }
+    public void demotionKnowledge(String knowledge){
+        int currentKnowledgepoint = knowledgePoint.get(knowledge);
+        if(currentKnowledgepoint > 90000){
+            setKnowledgePoint(knowledge, 80001);
+        } else if(currentKnowledgepoint > 40000){
+            setKnowledgePoint(knowledge, 30001);
+        } else if(currentKnowledgepoint > 10000){
+            setKnowledgePoint(knowledge, 1);
+        } else{
+            setKnowledgePoint(knowledge, 0);
+        }
     }
 }
