@@ -2,13 +2,9 @@ package life.grass.grasscore.player;
 
 import life.grass.grasscore.knowledge.BaseKnowledge;
 import life.grass.grasscore.knowledge.EBaseKnowledge;
-import life.grass.grasscore.knowledge.KnowledgeManager;
-import org.bukkit.entity.Player;
-import sun.security.util.Cache;
 
-import java.nio.channels.spi.AbstractSelectionKey;
-import java.util.AbstractCollection;
-import java.util.List;
+import org.bukkit.entity.Player;
+
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -59,9 +55,8 @@ public class PlayerInfo {
     }
 
     public void penaltyKnowledgeStats(){
-        Map<String, Integer> knowledgePoint = knowledgeStats.getKnowledgePointMap();
         Stream.of(EBaseKnowledge.values()).forEach(b -> {
-            if(true){ //もしプロフェッショナルでなければ
+            if(true) {  //もし子となるアドバンスド知識がプロフェッショナルでなければ
                 knowledgeStats.demotionKnowledge(b.name());
             }
             knowledgeStats.setTheoryPoint(b.name(), 0);

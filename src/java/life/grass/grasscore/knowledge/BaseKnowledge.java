@@ -5,6 +5,7 @@ public class BaseKnowledge {
     private final String name;
     private final String label;
     private final double rate;
+
     public BaseKnowledge(String name, String label, double rate){
         this.name = name;
         this.label = label;

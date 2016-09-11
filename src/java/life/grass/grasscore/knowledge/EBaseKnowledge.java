@@ -1,8 +1,5 @@
 package life.grass.grasscore.knowledge;
 
-/**
- * Created by gurapomu on 16/09/08.
- */
 public enum EBaseKnowledge {
     AXE("戦斧", 1.0),
     BOOK_READING("読書", 1.0),
