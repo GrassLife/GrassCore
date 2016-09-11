@@ -1,7 +1,7 @@
 package life.grass.grasscore.knowledge;
 
 
-public class BaseKnowledge extends AbstractKnowledge{
+public class BaseKnowledge {
     private final String name;
     private final String label;
     private final double rate;
@@ -19,5 +19,10 @@ public class BaseKnowledge extends AbstractKnowledge{
     }
     public double getRate(){
         return rate;
+    }
+
+    @Override
+    public String toString(){
+        return getName();
     }
 }
