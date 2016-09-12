@@ -7,5 +7,4 @@ public enum ElementType {
     FIRE,
     ICE,
     LIGHTING,
-
 }
