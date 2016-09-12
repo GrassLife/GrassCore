@@ -1,7 +1,7 @@
 package life.grass.grasscore.item.tags;
 
 import com.google.gson.Gson;
-import life.grass.grasscore.item.type.EfficacyType;
+import life.grass.grasscore.item.types.EfficacyType;
 
 import java.util.HashMap;
 

@@ -1,8 +1,7 @@
 package life.grass.grasscore.item.tags;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import life.grass.grasscore.item.type.ArmorType;
+import life.grass.grasscore.item.types.ArmorType;
 
 /**
  * Created by Ecila on 2016/09/03.

@@ -1,6 +1,6 @@
 package life.grass.grasscore.item.tags;
 
-import life.grass.grasscore.item.type.EfficacyType;
+import life.grass.grasscore.item.types.EfficacyType;
 
 import java.util.HashMap;
 

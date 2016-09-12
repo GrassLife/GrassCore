@@ -1,7 +1,7 @@
 package life.grass.grasscore.item.tags;
 
 import com.google.gson.Gson;
-import life.grass.grasscore.item.type.ElementType;
+import life.grass.grasscore.item.types.ElementType;
 
 /**
  * Created by Ecila on 2016/09/03.

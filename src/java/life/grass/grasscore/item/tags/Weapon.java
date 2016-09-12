@@ -1,6 +1,6 @@
 package life.grass.grasscore.item.tags;
 
-import life.grass.grasscore.item.type.WeaponType;
+import life.grass.grasscore.item.types.WeaponType;
 
 /**
  * Created by Ecila on 2016/09/04.

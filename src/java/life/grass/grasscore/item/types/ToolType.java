@@ -1,4 +1,4 @@
-package life.grass.grasscore.item.type;
+package life.grass.grasscore.item.types;
 
 /**
  * Created by Ecila on 2016/09/04.
