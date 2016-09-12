@@ -5,5 +5,5 @@ package life.grass.grasscore.item.type;
  */
 public enum ArmorType {
     ARMOR,
-    SHIELD
+    SHIELD;
 }
