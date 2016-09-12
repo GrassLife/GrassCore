@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class GrassItem extends ItemStack {
     private int id;
+    private String name;
     private String[] info;
     private int rarity;
     private ArrayList<ItemTag> tags = new ArrayList<>();
@@ -37,10 +38,19 @@ public class GrassItem extends ItemStack {
             JsonObject body = gson.fromJson(lore.get(1), JsonObject.class);
             this.setRarity(body.get("rarity").getAsInt());
             this.setInfo(gson.fromJson(body.get("info"), String[].class));
+            this.setName(body.get("name").getAsString());
             // ItemTagの読み込み
             JsonArray tagContents = body.get("tags").getAsJsonArray();
             tagContents.forEach( tag -> tags.add(tagGson.fromJson(tag, ItemTag.class)));
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ArrayList<ItemTag> getTags() {
@@ -89,10 +99,10 @@ public class GrassItem extends ItemStack {
         Gson tagGson = new GsonBuilder().registerTypeAdapter(ItemTag.class, new ItemTagAdapter()).create();
         ItemStack item = this;
         ItemMeta meta = item.getItemMeta();
-
         JsonObject json = new JsonObject();
         // 静的タグの書き込み
         json.addProperty("rarity", this.rarity);
+        json.addProperty("name", this.name);
         json.add("info", gson.toJsonTree(getInfo()).getAsJsonArray());
         // ItemTagの書き込み
         JsonArray tagArray = new JsonArray();
