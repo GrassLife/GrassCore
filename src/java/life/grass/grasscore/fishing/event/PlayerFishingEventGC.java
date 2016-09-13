@@ -23,26 +23,27 @@ import java.util.List;
 public class PlayerFishingEventGC implements Listener {
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event) {
+        event.setExpToDrop(0);
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-            Item gottenfish = (Item) event.getCaught();
-            double rnumber1 = Math.random();
+            Item gottenFish = (Item) event.getCaught();
+            double rNumber1 = Math.random();
             //ここで乱数をナレッジなどに基づいて増加させる予定
-            if (rnumber1 < 0.1) {
-                gottenfish.remove();
+            if (rNumber1 < 0.1) {
+                gottenFish.remove();
                 /*はずれ*/
             } else {
-                FishingManager fishingmanager = new FishingManager();
-                List<Double> rsumlist = fishingmanager.getRsumlist();
-                double rnumber2 = Math.random() * rsumlist.get(rsumlist.size() - 1);
-                if (rnumber2 < rsumlist.get(0)) {
-                    System.out.println("You gotta" + fishingmanager.getFitemlist().get(0));
-                    gottenfish.setItemStack(new ItemStack(Material.RAW_CHICKEN));
+                FishingManager fishingManager = new FishingManager();
+                List<Double> rsumList = fishingManager.getRsumlist();
+                double rNumber2 = Math.random() * rsumList.get(rsumList.size() - 1);
+                if (rNumber2 < rsumList.get(0)) {
+                    System.out.println("You gotta" + fishingManager.getFitemlist().get(0));
+                    gottenFish.setItemStack(new ItemStack(Material.RAW_CHICKEN));
                     //一番初めの要素はfor文で表せない(０以上のパターン)のでこう書いた。
                 } else {
-                    for (int i = 1; i < rsumlist.size(); i++) {
-                        if (rnumber2 > rsumlist.get(i - 1) && rnumber2 < rsumlist.get(i)) {
-                            System.out.println("You gotta" + fishingmanager.getFitemlist().get(i));
-                            gottenfish.setItemStack(new ItemStack(Material.RAW_BEEF));
+                    for (int i = 1; i < rsumList.size(); i++) {
+                        if (rNumber2 > rsumList.get(i - 1) && rNumber2 < rsumList.get(i)) {
+                            System.out.println("You gotta" + fishingManager.getFitemlist().get(i));
+                            gottenFish.setItemStack(new ItemStack(Material.RAW_BEEF));
                             //本来はリストに基づいて釣れるものが決まるがテストの段階ではめんどくさいのでこうしとく。
                         }
                     }

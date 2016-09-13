@@ -13,30 +13,30 @@ import java.util.List;
  * Created by takah on 2016/09/08.
  */
 public class FishableItems {
-    private int defaultratio;
-    private HashMap<Biome, Double> biorate = new HashMap<>();
-    private HashMap<Weather, Double> weatherrate = new HashMap<>();
+    private int defaultRatio;
+    private HashMap<Biome, Double> bioRate = new HashMap<>();
+    private HashMap<Weather, Double> weatherRate = new HashMap<>();
 
     FishableItems(int r){
-        this.defaultratio = r;
+        this.defaultRatio = r;
     }
 
     public double getRealratio(Biome b, Weather w){
-        double realratio;
+        double realRatio;
         double r1;
         double r2;
 
-        if(biorate.get(b) == null){
+        if(bioRate.get(b) == null){
             r1 = 1;
         }else{
-            r1 = biorate.get(b);
+            r1 = bioRate.get(b);
         }
-        if(weatherrate.get(w) == null){
+        if(weatherRate.get(w) == null){
             r2 = 1;
         }else{
-            r2 = weatherrate.get(b);
+            r2 = weatherRate.get(b);
         }
-        realratio = r1 * r2 * defaultratio;
-        return realratio;
+        realRatio = r1 * r2 * defaultRatio;
+        return realRatio;
     }
 }
