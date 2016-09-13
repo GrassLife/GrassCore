@@ -3,6 +3,7 @@ package life.grass.grasscore.fishing;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Weather;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,10 @@ public class FishableItems {
     private int defaultratio;
     private HashMap<Biome, Double> biorate = new HashMap<>();
     private HashMap<Weather, Double> weatherrate = new HashMap<>();
+
+    FishableItems(int r){
+        this.defaultratio = r;
+    }
 
     public double getRealratio(Biome b, Weather w){
         double realratio;
@@ -34,7 +39,4 @@ public class FishableItems {
         realratio = r1 * r2 * defaultratio;
         return realratio;
     }
-
-
-
 }
