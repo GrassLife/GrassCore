@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class FishingManager {
 
-    private List<String> fitemList = Makefitemlist();
-    private List<Double> ratioList = Makeratiolist();
-    private List<Double> rsumList = Makersumlist();
+    private List<String> fitemList = makeFitemList();
+    private List<Double> ratioList = makeRatioList();
+    private List<Double> rsumList = makeRsumList();
 
 
-    private List<String> Makefitemlist() {
+    private List<String> makeFitemList() {
         List<String> list = new ArrayList<>();
         list.add("鶏肉");
         list.add("牛肉");
@@ -24,7 +24,7 @@ public class FishingManager {
     }
 
 
-    private ArrayList<Double> Makeratiolist(){
+    private ArrayList<Double> makeRatioList(){
         ArrayList<Double> list = new ArrayList<>();
         for(int i = 0 ; i < fitemList.size() ; i++){
             list.add((double) i + 1);
@@ -33,7 +33,7 @@ public class FishingManager {
         //とりあえずはテストのためにこのように記述。
         //実際はすべてのアイテムに対してgetRealratioによりrealratioを取得、リストに入れていきます。
     }
-    private ArrayList<Double> Makersumlist(){
+    private ArrayList<Double> makeRsumList(){
         ArrayList<Double> list = new ArrayList<>();
         list.add(ratioList.get(0));
         for(int i= 1; i < ratioList.size() ; i++){
@@ -42,15 +42,15 @@ public class FishingManager {
         return list ;
     }
 
-    public List<Double> getRatiolist() {
+    public List<Double> getRatioList() {
         return ratioList;
     }
 
-    public List<Double> getRsumlist() {
+    public List<Double> getRsumList() {
         return rsumList;
     }
 
-    public List<String> getFitemlist() {
+    public List<String> getFitemList() {
         return fitemList;
     }
 }

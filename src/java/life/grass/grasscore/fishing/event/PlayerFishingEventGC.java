@@ -24,25 +24,30 @@ public class PlayerFishingEventGC implements Listener {
     @EventHandler
     public void onPlayerFishing(PlayerFishEvent event) {
         event.setExpToDrop(0);
+
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
             Item gottenFish = (Item) event.getCaught();
             double rNumber1 = Math.random();
             //ここで乱数をナレッジなどに基づいて増加させる予定
+
             if (rNumber1 < 0.1) {
                 gottenFish.remove();
                 /*はずれ*/
             } else {
                 FishingManager fishingManager = new FishingManager();
-                List<Double> rsumList = fishingManager.getRsumlist();
+                List<Double> rsumList = fishingManager.getRsumList();
                 double rNumber2 = Math.random() * rsumList.get(rsumList.size() - 1);
+
                 if (rNumber2 < rsumList.get(0)) {
-                    System.out.println("You gotta" + fishingManager.getFitemlist().get(0));
+                    System.out.println("You gotta" + fishingManager.getFitemList().get(0));
                     gottenFish.setItemStack(new ItemStack(Material.RAW_CHICKEN));
                     //一番初めの要素はfor文で表せない(０以上のパターン)のでこう書いた。
                 } else {
+
                     for (int i = 1; i < rsumList.size(); i++) {
+
                         if (rNumber2 > rsumList.get(i - 1) && rNumber2 < rsumList.get(i)) {
-                            System.out.println("You gotta" + fishingManager.getFitemlist().get(i));
+                            System.out.println("You gotta" + fishingManager.getFitemList().get(i));
                             gottenFish.setItemStack(new ItemStack(Material.RAW_BEEF));
                             //本来はリストに基づいて釣れるものが決まるがテストの段階ではめんどくさいのでこうしとく。
                         }
