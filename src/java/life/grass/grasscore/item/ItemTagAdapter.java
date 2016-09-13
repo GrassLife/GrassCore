@@ -17,7 +17,7 @@ public class ItemTagAdapter implements JsonSerializer<ItemTag>, JsonDeserializer
     public ItemTag deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
-        String className = prim.getAsString();
+        String className = "life.grass.grasscore.item.tags" + prim.getAsString();
         Class<?> klass;
         try {
             klass = Class.forName(className);
@@ -60,7 +60,7 @@ public class ItemTagAdapter implements JsonSerializer<ItemTag>, JsonDeserializer
     @Override
     public JsonElement serialize(ItemTag src, Type typeOfSrc, JsonSerializationContext context) throws JsonParseException {
         JsonObject retValue = new JsonObject();
-        String className = src.getClass().getName();
+        String className = src.getClass().getSimpleName();
         retValue.addProperty(CLASSNAME, className);
         JsonElement elem = context.serialize(src);
         retValue.add(INSTANCE, elem);
