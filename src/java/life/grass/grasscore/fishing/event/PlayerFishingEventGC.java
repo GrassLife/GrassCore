@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,36 +28,21 @@ public class PlayerFishingEventGC implements Listener {
 
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
             Item gottenFish = (Item) event.getCaught();
-            double rNumber1 = Math.random();
-            //ここで乱数をナレッジなどに基づいて増加させる予定
-
-            if (rNumber1 < 0.1) {
+            List<Double> nope = FishingManager.makeSumList(makeNope());//ここはratioListから取ってくる。
+            if(FishingManager.probMaker(nope) == 0){
                 gottenFish.remove();
-                /*はずれ*/
-            } else {
-                FishingManager fishingManager = new FishingManager();
-                List<Double> rsumList = fishingManager.getRsumList();
-                double rNumber2 = Math.random() * rsumList.get(rsumList.size() - 1);
-
-                if (rNumber2 < rsumList.get(0)) {
-                    System.out.println("You gotta" + fishingManager.getFitemList().get(0));
-                    gottenFish.setItemStack(new ItemStack(Material.RAW_CHICKEN));
-                    //一番初めの要素はfor文で表せない(０以上のパターン)のでこう書いた。
-                } else {
-
-                    for (int i = 1; i < rsumList.size(); i++) {
-
-                        if (rNumber2 > rsumList.get(i - 1) && rNumber2 < rsumList.get(i)) {
-                            System.out.println("You gotta" + fishingManager.getFitemList().get(i));
-                            gottenFish.setItemStack(new ItemStack(Material.RAW_BEEF));
-                            //本来はリストに基づいて釣れるものが決まるがテストの段階ではめんどくさいのでこうしとく。
-                        }
+            } else { new FishingManager();
+                List<Double> rsumList = FishingManager.getRsumList();
+                        System.out.println("You gotta" + FishingManager.getFitemList().get(FishingManager.probMaker(rsumList)));
+                        gottenFish.setItemStack(new ItemStack(Material.RAW_BEEF));
                     }
                 }
 
-            }
-
-        }
-
+    }
+    private List<Double> makeNope(){
+        List<Double> list = new ArrayList<>();
+        list.add(5.0);
+        list.add(5.0);
+        return list;//テスト用　後で消します
     }
 }

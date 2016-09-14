@@ -21,7 +21,7 @@ public class FishableItems {
         this.defaultRatio = r;
     }
 
-    public double getRealratio(Biome b, Weather w){
+    public double getRealatio(Biome b, Weather w){
         double realRatio;
         double r1;
         double r2;
@@ -34,7 +34,7 @@ public class FishableItems {
         if(weatherRate.get(w) == null){
             r2 = 1;
         }else{
-            r2 = weatherRate.get(b);
+            r2 = weatherRate.get(w);
         }
         realRatio = r1 * r2 * defaultRatio;
         return realRatio;

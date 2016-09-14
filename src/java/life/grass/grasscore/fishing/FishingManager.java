@@ -1,7 +1,5 @@
 package life.grass.grasscore.fishing;
 
-import org.bukkit.inventory.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +8,12 @@ import java.util.List;
  */
 public class FishingManager {
 
-    private List<String> fitemList = makeFitemList();
-    private List<Double> ratioList = makeRatioList();
-    private List<Double> rsumList = makeRsumList();
+    private static List<String> fitemList = makeItemList();
+    private static List<Double> ratioList = makeRatioList();
+    private static List<Double> rsumList = makeSumList(ratioList);
 
-
-    private List<String> makeFitemList() {
+    //実装時はコンフィグからアイテムのリストを作る予定。
+    public  static List<String> makeItemList() {
         List<String> list = new ArrayList<>();
         list.add("鶏肉");
         list.add("牛肉");
@@ -23,34 +21,47 @@ public class FishingManager {
         return list;
     }
 
-
-    private ArrayList<Double> makeRatioList(){
+    //実装時には釣りをしているときのバイオームと天候などを渡してgetRealratioにより比取得して対応するindexに入れていきます。
+    public static ArrayList<Double> makeRatioList(){
         ArrayList<Double> list = new ArrayList<>();
-        for(int i = 0 ; i < fitemList.size() ; i++){
-            list.add((double) i + 1);
-        }
+        list.add(7.0);
+        list.add(2.0);
+        list.add(1.0);
         return list;
-        //とりあえずはテストのためにこのように記述。
-        //実際はすべてのアイテムに対してgetRealratioによりrealratioを取得、リストに入れていきます。
     }
-    private ArrayList<Double> makeRsumList(){
-        ArrayList<Double> list = new ArrayList<>();
-        list.add(ratioList.get(0));
-        for(int i= 1; i < ratioList.size() ; i++){
-            list.add(list.get(i - 1) + ratioList.get(i));
+    //リストを渡すと各々のインデックスまでの総和を要素に持つ比のリストを生成します
+    public static List<Double> makeSumList(List<Double> list){
+        List<Double> sumList = new ArrayList<>();
+        for(int i= 0; i < list.size() ; i++){
+            Double left = i == 0? 0.0: sumList.get(i - 1);
+            sumList.add(left + list.get(i));
         }
-        return list ;
+        return sumList ;
+    }
+    //比のリストを渡すとそれに従ってランダムなindexを返してくれます。
+    public static int probMaker( List<Double> list){
+        double random = Math.random() * list.get(list.size() - 1);
+        System.out.println(random);
+        int indexNumber = 0;
+        for(int i = 0 ; i < list.size() ; i++){
+            double left = i == 0? 0: list.get(i - 1);
+            if(random >= left && random < list.get(i) ){
+                indexNumber = i;
+            }
+        }
+
+        return indexNumber;
     }
 
-    public List<Double> getRatioList() {
+    public static List<Double> getRatioList() {
         return ratioList;
     }
 
-    public List<Double> getRsumList() {
+    public static List<Double> getRsumList() {
         return rsumList;
     }
 
-    public List<String> getFitemList() {
+    public static List<String> getFitemList() {
         return fitemList;
     }
 }
