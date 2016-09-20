@@ -11,7 +11,7 @@ public class Enchant {
     private int id;
     private String label;
     private EnchantPosition position;
-    private ArrayList<ItemTag> efficacies = new ArrayList<>();
+    private ArrayList<ItemTag> efficaciesList = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -37,11 +37,11 @@ public class Enchant {
         this.position = position;
     }
 
-    public ArrayList<ItemTag> getEfficacies() {
-        return efficacies;
+    public ArrayList<ItemTag> getEfficaciesList() {
+        return efficaciesList;
     }
 
-    public void setEfficacies(ArrayList<ItemTag> efficacies) {
-        this.efficacies = efficacies;
+    public void setEfficaciesList(ArrayList<ItemTag> efficaciesList) {
+        this.efficaciesList = efficaciesList;
     }
 }
