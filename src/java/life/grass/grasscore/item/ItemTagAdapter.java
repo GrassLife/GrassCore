@@ -25,35 +25,6 @@ public class ItemTagAdapter implements JsonSerializer<ItemTag>, JsonDeserializer
             e.printStackTrace();
             throw new JsonParseException(e.getMessage());
         }
-//        switch (className) {
-//            case "life.grass.grasscore.item.tags.Armor":
-//                klass = Armor.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.CraftMaterial":
-//                klass = CraftMaterial.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.Damageable":
-//                klass = Damageable.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.Eatable":
-//                klass = Eatable.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.Elementable":
-//                klass = Elementable.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.FoodMaterial":
-//                klass = FoodMaterial.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.Tool":
-//                klass = Tool.class;
-//                break;
-//            case "life.grass.grasscore.item.tags.Weapon":
-//                klass = Weapon.class;
-//                break;
-//
-//            default:
-//                throw new JsonParseException("class not found. className=" + className);
-//        }
         return context.deserialize(jsonObject.get(INSTANCE), klass);
     }
 
