@@ -94,6 +94,11 @@ public class GrassItem extends ItemStack {
         return null;
     }
 
+
+    /**
+     * GrassItemをItemStackへ変換します
+     * @return 情報を全てLoreに格納したItemStack
+     */
     public ItemStack toItemStack() {
         Gson gson = new Gson();
         Gson tagGson = new GsonBuilder().registerTypeAdapter(ItemTag.class, new ItemTagAdapter()).create();
