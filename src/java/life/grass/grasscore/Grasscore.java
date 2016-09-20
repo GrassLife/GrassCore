@@ -68,7 +68,7 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
             armor.setProtection(10);
             armor.setType(ArmorType.ARMOR);
             tags.add(armor);
-            item.setTags(tags);
+            item.setTagHolder(tags);
             Player player = (Player) sender;
             log.info("GrassItem -> ItemStack");
             log.info(item.toItemStack().toString());
