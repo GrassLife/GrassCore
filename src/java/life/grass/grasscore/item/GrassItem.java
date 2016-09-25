@@ -1,12 +1,14 @@
 package life.grass.grasscore.item;
 
 import com.google.gson.*;
-import life.grass.grasscore.Grasscore;
+import life.grass.grasscore.item.enchant.Enchant;
+import life.grass.grasscore.item.enchant.EnchantPosition;
 import life.grass.grasscore.item.tags.ItemTag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,7 +19,8 @@ public class GrassItem extends ItemStack {
     private String name;
     private String[] info;
     private int rarity;
-    private ArrayList<ItemTag> tags = new ArrayList<>();
+    private ArrayList<ItemTag> tagHolder = new ArrayList<>();
+    private HashMap<EnchantPosition, Enchant> enchantHolder = new HashMap<>();
 
     /**
      * ItemStackからGrassItemを生成します。ItemStackのLoreにあるJson情報を解析します。
@@ -41,7 +44,10 @@ public class GrassItem extends ItemStack {
             this.setName(body.get("name").getAsString());
             // ItemTagの読み込み
             JsonArray tagContents = body.get("tags").getAsJsonArray();
-            tagContents.forEach( tag -> tags.add(tagGson.fromJson(tag, ItemTag.class)));
+            tagContents.forEach( tag -> tagHolder.add(tagGson.fromJson(tag, ItemTag.class)));
+            // Enchantの読み込み
+            JsonObject enchantContents = body.get("enchants").getAsJsonObject();
+
         }
     }
 
@@ -53,12 +59,12 @@ public class GrassItem extends ItemStack {
         this.name = name;
     }
 
-    public ArrayList<ItemTag> getTags() {
-        return tags;
+    public ArrayList<ItemTag> getTagHolder() {
+        return tagHolder;
     }
 
-    public void setTags(ArrayList<ItemTag> tags) {
-        this.tags = tags;
+    public void setTagHolder(ArrayList<ItemTag> tagHolder) {
+        this.tagHolder = tagHolder;
     }
 
     public int getId() {
@@ -85,13 +91,25 @@ public class GrassItem extends ItemStack {
         this.rarity = rarity;
     }
 
+    public HashMap<EnchantPosition, Enchant> getEnchantHolder() {
+        return enchantHolder;
+    }
+
+    public void setEnchantHolder(HashMap<EnchantPosition, Enchant> enchantHolder) {
+        this.enchantHolder = enchantHolder;
+    }
+
     public ItemTag readTag(Class tagClass) {
-        for(ItemTag tag: getTags()) {
+        for(ItemTag tag: getTagHolder()) {
             if(tagClass.isAssignableFrom(tag.getClass())) {
                 return tag;
             }
         }
         return null;
+    }
+
+    public Enchant readEnchant(EnchantPosition pos) {
+        return getEnchantHolder().get(pos);
     }
 
 
@@ -111,8 +129,10 @@ public class GrassItem extends ItemStack {
         json.add("info", gson.toJsonTree(getInfo()).getAsJsonArray());
         // ItemTagの書き込み
         JsonArray tagArray = new JsonArray();
-        tags.forEach( tag -> tagArray.add(new JsonParser().parse(tagGson.toJson(tag, ItemTag.class))));
+        tagHolder.forEach(tag -> tagArray.add(new JsonParser().parse(tagGson.toJson(tag, ItemTag.class))));
         json.add("tags", tagArray);
+        //Enchantの書き込み
+        json.add("enchants", gson.toJsonTree(getEnchantHolder()));
 
         List<String> lore = new ArrayList<>();
         lore.add(String.valueOf(this.id));
