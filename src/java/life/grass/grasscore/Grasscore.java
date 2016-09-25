@@ -33,9 +33,15 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
     public static PluginManager pluginManager;
     private ProtocolManager protocolManager;
     private BukkitTask dataSaveTask = null;
+    public static Grasscore instance;
+
+    public static Grasscore getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
+        instance  = this;
         getServer().getPluginManager().registerEvents(new PlayerLoginEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
