@@ -1,16 +1,13 @@
 package life.grass.grasscore;
 
-<<<<<<< HEAD
-import life.grass.grasscore.fishing.event.PlayerFishingEventGC;
-=======
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+import life.grass.grasscore.entity.EntityDeathEventGC;
 import life.grass.grasscore.item.GrassItem;
 import life.grass.grasscore.item.ItemPacketRewriter;
 import life.grass.grasscore.item.tags.Armor;
 import life.grass.grasscore.item.tags.ItemTag;
 import life.grass.grasscore.item.types.ArmorType;
-import life.grass.grasscore.entity.EntityDeathEventGC;
 import life.grass.grasscore.knowledge.EBaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
 import life.grass.grasscore.player.event.PlayerFishingEventGC;
@@ -23,7 +20,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
->>>>>>> develop
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -43,9 +39,6 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
         return instance;
     }
 
-<<<<<<< HEAD
-        getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(),this);
-=======
     @Override
     public void onEnable() {
         instance  = this;
@@ -60,7 +53,6 @@ public class Grasscore extends JavaPlugin implements CommandExecutor {
             Stream.of(EBaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
         log = getLogger();
->>>>>>> develop
     }
 
     @Override
