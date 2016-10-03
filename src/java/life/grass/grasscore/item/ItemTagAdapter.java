@@ -1,7 +1,6 @@
 package life.grass.grasscore.item;
 
 import com.google.gson.*;
-import life.grass.grasscore.Grasscore;
 import life.grass.grasscore.item.tags.*;
 
 import java.lang.reflect.Type;

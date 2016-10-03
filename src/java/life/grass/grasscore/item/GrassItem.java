@@ -1,7 +1,6 @@
 package life.grass.grasscore.item;
 
 import com.google.gson.*;
-import life.grass.grasscore.Grasscore;
 import life.grass.grasscore.item.tags.ItemTag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

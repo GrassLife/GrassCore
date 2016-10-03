@@ -1,5 +1,5 @@
 name: Grasscore
-main: life.grass.grasscore.Grasscore
+main: life.grass.grasscore.GrassCore
 version: 1.0.0
 depend: [ProtocolLib]
 commands:

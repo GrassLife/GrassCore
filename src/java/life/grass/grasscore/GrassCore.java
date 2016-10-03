@@ -28,14 +28,14 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-public class Grasscore extends JavaPlugin implements CommandExecutor {
+public class GrassCore extends JavaPlugin implements CommandExecutor {
     public static Logger log;
     public static PluginManager pluginManager;
     private ProtocolManager protocolManager;
     private BukkitTask dataSaveTask = null;
-    public static Grasscore instance;
+    public static GrassCore instance;
 
-    public static Grasscore getInstance() {
+    public static GrassCore getInstance() {
         return instance;
     }
 
