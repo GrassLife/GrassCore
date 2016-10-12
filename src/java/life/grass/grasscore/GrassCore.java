@@ -10,6 +10,7 @@ import life.grass.grasscore.item.tags.ItemTag;
 import life.grass.grasscore.item.types.ArmorType;
 import life.grass.grasscore.knowledge.EBaseKnowledge;
 import life.grass.grasscore.knowledge.KnowledgeManager;
+import life.grass.grasscore.mining.event.MiningEventGC;
 import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import life.grass.grasscore.player.event.PlayerLoginEventGC;
 import life.grass.grasscore.player.event.PlayerQuitEventGC;
@@ -46,6 +47,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
         getServer().getPluginManager().registerEvents(new PlayerQuitEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
         getServer().getPluginManager().registerEvents(new EntityDeathEventGC(), this);
+        getServer().getPluginManager().registerEvents(new MiningEventGC(), this);
         protocolManager = ProtocolLibrary.getProtocolManager();
         ItemPacketRewriter.getInstance().addListener(protocolManager, this);
         dataSaveTask = this.getServer().getScheduler().runTaskTimer(this, new DataSaveTimer(this), 0L, 20L*60*10);

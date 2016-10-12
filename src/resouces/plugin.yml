@@ -5,4 +5,4 @@ depend: [ProtocolLib]
 commands:
   grasscore:
     description: Test
-    usage: Test
+    usage+: Test

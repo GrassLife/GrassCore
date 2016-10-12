@@ -1,3 +1,4 @@
+
 package life.grass.grasscore.fishing;
 
 import org.bukkit.Material;
