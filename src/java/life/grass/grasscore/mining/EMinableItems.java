@@ -6,6 +6,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.exp;
+import static java.lang.Math.pow;
 
 /**
  * Created by takah on 2016/10/23.
@@ -44,7 +46,7 @@ public enum EMinableItems {
 
     public void dropItem(BlockBreakEvent event, Location bLocation){
         double prob = Math.random();
-        double ratio = (1 - abs(modeHeight- bLocation.getY()) / modeHeight) * highestRatio;
+        double ratio = (exp( -pow((modeHeight - bLocation.getY()) * 2 / modeHeight, 2))) * highestRatio;
         if (prob < ratio && prob > 0) {
             event.getPlayer().getWorld().dropItemNaturally(bLocation, material);
         }
