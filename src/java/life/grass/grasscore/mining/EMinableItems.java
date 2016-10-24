@@ -14,22 +14,24 @@ import static java.lang.Math.pow;
  */
 public enum EMinableItems {
 
-    COAL(new ItemStack(Material.COAL), 60, 0.025),
-    IRON_ORE(new ItemStack(Material.IRON_ORE), 40, 0.0175),
-    GOLD_ORE(new ItemStack(Material.GOLD_ORE), 30, 0.0075),
-    LAPIS_LAZULI(new ItemStack(Material.INK_SACK, 1, (short)4), 35, 0.01),
-    EMERALD(new ItemStack(Material.EMERALD), 20, 0.0075),
-    DIAMOND(new ItemStack(Material.DIAMOND), 13, 0.002),
-    REDSTONE(new ItemStack(Material.REDSTONE), 15, 0.02);
+    COAL(new ItemStack(Material.COAL), 60, 0.022, 2.8),
+    IRON_ORE(new ItemStack(Material.IRON_ORE), 40, 0.0175, 2),
+    GOLD_ORE(new ItemStack(Material.GOLD_ORE), 30, 0.0075, 2),
+    LAPIS_LAZULI(new ItemStack(Material.INK_SACK, 1, (short)4), 35, 0.012, 0.5),
+    EMERALD(new ItemStack(Material.EMERALD), 20, 0.015, 0.2),
+    DIAMOND(new ItemStack(Material.DIAMOND), 13, 0.002, 1.5),
+    REDSTONE(new ItemStack(Material.REDSTONE), 15, 0.02, 1.4);
 
     private final ItemStack material;
     private final int modeHeight;
     private final double highestRatio;
+    private final double vRate;
 
-    EMinableItems(ItemStack material, int modeHeight, double highestRatio) {
+    EMinableItems(ItemStack material, int modeHeight, double highestRatio, double vRate) {
         this.material = material;
         this.modeHeight = modeHeight;
         this.highestRatio = highestRatio;
+        this.vRate = vRate;
     }
 
     public ItemStack getMaterial() {
@@ -46,7 +48,7 @@ public enum EMinableItems {
 
     public void dropItem(BlockBreakEvent event, Location bLocation){
         double prob = Math.random();
-        double ratio = (exp( -pow((modeHeight - bLocation.getY()) * 2 / modeHeight, 2))) * highestRatio;
+        double ratio = (exp( -pow((modeHeight - bLocation.getY()) * 2 / modeHeight * vRate, 2))) * highestRatio;
         if (prob < ratio && prob > 0) {
             event.getPlayer().getWorld().dropItemNaturally(bLocation, material);
         }
