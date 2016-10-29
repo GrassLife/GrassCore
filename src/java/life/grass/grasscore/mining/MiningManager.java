@@ -14,8 +14,10 @@ public  class MiningManager {
 
     public static void decideDrop(BlockBreakEvent event, Location bLocation) {
 
-        for (EMinableItems item : EMinableItems.values())
+        for (EMinableItems item : EMinableItems.values()) {
             item.dropItem(event, bLocation);
+            item.chainItem(event, bLocation);
+        }
 
     }
 }
