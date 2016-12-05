@@ -25,6 +25,9 @@ public class EntityDeathEventGC implements Listener {
                 } else if(((Weapon)itemTag).getType() == WeaponType.BATTLE_AXE) {
                     playerInfo.getKnowledgeStats().increaseKnowledgePoint("AXE", 1);
                     System.out.println(playerInfo.getKnowledgeStats().getKnowledgePoint("AXE"));
+                } else if(((Weapon)itemTag).getType() == WeaponType.BOW) {
+                    playerInfo.getKnowledgeStats().increaseKnowledgePoint("BOW", 1);
+                    System.out.println(playerInfo.getKnowledgeStats().getKnowledgePoint("BOW"));
                 }
             }
         }
