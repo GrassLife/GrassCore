@@ -18,6 +18,9 @@ public class KnowledgeManager {
     public BaseKnowledge getKnowledge(String knowledgeName){
         return knowledgeList.stream().filter(k -> k.getName().equals(knowledgeName)).findFirst().orElse(null);
     }
+    public BaseKnowledge getKnowledge(EBaseKnowledge knowledge){
+        return knowledgeList.stream().filter(k -> k.getName().equals(knowledge.name())).findFirst().orElse(null);
+    }
 
     public List<BaseKnowledge> getKnowledgeList() {
         return this.knowledgeList;
