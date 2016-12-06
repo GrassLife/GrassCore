@@ -15,7 +15,6 @@ import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import life.grass.grasscore.player.event.PlayerLoginEventGC;
 import life.grass.grasscore.player.event.PlayerQuitEventGC;
 import life.grass.grasscore.timer.DataSaveTimer;
-import life.grass.grasscore.timer.LifespanCheckTimer;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -35,7 +34,6 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
     public static PluginManager pluginManager;
     private ProtocolManager protocolManager;
     private BukkitTask dataSaveTask = null;
-    private BukkitTask lifespanCheckTask = null;
     public static GrassCore instance;
 
     public static GrassCore getInstance() {
@@ -53,7 +51,6 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
         protocolManager = ProtocolLibrary.getProtocolManager();
         ItemPacketRewriter.getInstance().addListener(protocolManager, this);
         dataSaveTask = this.getServer().getScheduler().runTaskTimer(this, new DataSaveTimer(this), 0L, 20L*60*10);
-        lifespanCheckTask = this.getServer().getScheduler().runTaskTimer(this, new LifespanCheckTimer(this), 0L, 20L*60*5);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
             Stream.of(EBaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }

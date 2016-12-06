@@ -11,6 +11,10 @@ public class PlayerManagerGC {
     public static PlayerManagerGC instance = new PlayerManagerGC();
     public PlayerManagerGC() {}
 
+    public static PlayerManagerGC getInstance(){
+        return instance;
+    }
+
     public void registerPlayer(Player player){
         playerInfoList.add(new PlayerInfo(player));
     }

@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 public class PlayerInfo {
     private Player player;
     private UUID uuid;
-    private int lifespan = 20000;
-    private int healthLevel = 50; //range: 1 to 100
+    private int lifespan;
+    private int healthLevel; //range: 1 to 100
 
     private KnowledgeStats knowledgeStats;
 
@@ -55,7 +55,7 @@ public class PlayerInfo {
         lifespan -= value;
     }
 
-    public void shrinkLifespan(){
+    public void shrinkLifespan() {
         lifespan -= (101 - healthLevel);
     }
 
