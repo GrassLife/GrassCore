@@ -4,9 +4,9 @@ import life.grass.grasscore.GrassCore;
 import life.grass.grasscore.player.PlayerManagerGC;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class lifespanCheckTimer implements Runnable {
+public class LifespanCheckTimer implements Runnable {
     JavaPlugin plugin;
-    public lifespanCheckTimer(JavaPlugin plugin) {
+    public LifespanCheckTimer(JavaPlugin plugin) {
         this.plugin = plugin;
     }
     @Override
