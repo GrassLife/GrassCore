@@ -14,7 +14,6 @@ import life.grass.grasscore.mining.event.MiningEventGC;
 import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import life.grass.grasscore.player.event.PlayerLoginEventGC;
 import life.grass.grasscore.player.event.PlayerQuitEventGC;
-import life.grass.grasscore.timer.ClockTimer;
 import life.grass.grasscore.timer.DataSaveTimer;
 import life.grass.grasscore.timer.LifespanCheckTimer;
 import life.grass.grasscore.world.timeFlow.TimeFlow;
@@ -59,7 +58,12 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
         ItemPacketRewriter.getInstance().addListener(protocolManager, this);
         dataSaveTask = this.getServer().getScheduler().runTaskTimer(this, new DataSaveTimer(this), 0L, 20L*60*10);
         lifespanCheckTask = this.getServer().getScheduler().runTaskTimer(this, new LifespanCheckTimer(this), 0L, 20L*60*10);
-        clockTask = this.getServer().getScheduler().runTaskTimer(this, new ClockTimer(this), 0L, 20L*60*10);
+        clockTask = this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
+            @Override
+            public void run() {
+                timeFlow.proceedTime();
+            }
+        }, 0L, 20L * 60 * 10);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
             Stream.of(EBaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
