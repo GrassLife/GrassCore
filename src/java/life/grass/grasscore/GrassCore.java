@@ -14,7 +14,10 @@ import life.grass.grasscore.mining.event.MiningEventGC;
 import life.grass.grasscore.player.event.PlayerFishingEventGC;
 import life.grass.grasscore.player.event.PlayerLoginEventGC;
 import life.grass.grasscore.player.event.PlayerQuitEventGC;
+import life.grass.grasscore.timer.ClockTimer;
 import life.grass.grasscore.timer.DataSaveTimer;
+import life.grass.grasscore.timer.LifespanCheckTimer;
+import life.grass.grasscore.world.timeFlow.TimeFlow;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,7 +37,10 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
     public static PluginManager pluginManager;
     private ProtocolManager protocolManager;
     private BukkitTask dataSaveTask = null;
+    private BukkitTask lifespanCheckTask = null;
+    private BukkitTask clockTask = null;
     public static GrassCore instance;
+    public TimeFlow timeFlow;
 
     public static GrassCore getInstance() {
         return instance;
@@ -43,6 +49,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
     @Override
     public void onEnable() {
         instance  = this;
+        timeFlow = new TimeFlow();
         getServer().getPluginManager().registerEvents(new PlayerLoginEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
@@ -51,6 +58,8 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
         protocolManager = ProtocolLibrary.getProtocolManager();
         ItemPacketRewriter.getInstance().addListener(protocolManager, this);
         dataSaveTask = this.getServer().getScheduler().runTaskTimer(this, new DataSaveTimer(this), 0L, 20L*60*10);
+        lifespanCheckTask = this.getServer().getScheduler().runTaskTimer(this, new LifespanCheckTimer(this), 0L, 20L*60*10);
+        clockTask = this.getServer().getScheduler().runTaskTimer(this, new ClockTimer(this), 0L, 20L*60*10);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
             Stream.of(EBaseKnowledge.values()).forEach(b -> KnowledgeManager.instance.registerKnowledge(b.name(), b.getLabel(), b.getRate()));
         }
@@ -59,7 +68,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onDisable() {
-        this.getServer().getScheduler().cancelTask(dataSaveTask.getTaskId());
+        this.getServer().getScheduler().cancelAllTasks();
     }
 
     @Override
