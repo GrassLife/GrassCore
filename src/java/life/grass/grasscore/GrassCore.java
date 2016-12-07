@@ -16,6 +16,7 @@ import life.grass.grasscore.player.event.PlayerLoginEventGC;
 import life.grass.grasscore.player.event.PlayerQuitEventGC;
 import life.grass.grasscore.timer.DataSaveTimer;
 import life.grass.grasscore.timer.LifespanCheckTimer;
+import life.grass.grasscore.world.WorldEnvironment;
 import life.grass.grasscore.world.timeFlow.TimeFlow;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -39,7 +40,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
     private BukkitTask lifespanCheckTask = null;
     private BukkitTask clockTask = null;
     public static GrassCore instance;
-    public TimeFlow timeFlow;
+    public WorldEnvironment worldEnvironment;
 
     public static GrassCore getInstance() {
         return instance;
@@ -48,7 +49,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
     @Override
     public void onEnable() {
         instance  = this;
-        timeFlow = new TimeFlow();
+        worldEnvironment = new WorldEnvironment();
         getServer().getPluginManager().registerEvents(new PlayerLoginEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitEventGC(), this);
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
@@ -61,7 +62,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
         clockTask = this.getServer().getScheduler().runTaskTimer(this, new Runnable() {
             @Override
             public void run() {
-                timeFlow.proceedTime();
+                worldEnvironment.timeFlow.proceedTime();
             }
         }, 0L, 20L * 60 * 10);
         if(KnowledgeManager.instance.getKnowledgeList().isEmpty()) {
