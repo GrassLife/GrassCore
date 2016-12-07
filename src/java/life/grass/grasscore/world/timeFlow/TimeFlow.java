@@ -11,6 +11,9 @@ public class TimeFlow {
         globalTime = 0; //仮
     }
 
+    public int getGlobalTime(){
+        return globalTime;
+    }
     public void proceedTime(){
         globalTime++;
         if(globalTime >= 10000){ //仮
