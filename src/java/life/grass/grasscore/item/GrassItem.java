@@ -1,11 +1,13 @@
 package life.grass.grasscore.item;
 
 import com.google.gson.*;
+import life.grass.grasscore.item.enchant.EnchantPosition;
 import life.grass.grasscore.item.tags.ItemTag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ public class GrassItem extends ItemStack {
     private String[] info;
     private int rarity;
     private ArrayList<ItemTag> tags = new ArrayList<>();
+    private int[] enchants;
 
     /**
      * ItemStackからGrassItemを生成します。ItemStackのLoreにあるJson情報を解析します。
@@ -41,6 +44,8 @@ public class GrassItem extends ItemStack {
             // ItemTagの読み込み
             JsonArray tagContents = body.get("tags").getAsJsonArray();
             tagContents.forEach( tag -> tags.add(tagGson.fromJson(tag, ItemTag.class)));
+            // Enchantの読み込み
+            this.setEnchants(gson.fromJson(body.get("enchants"), int[].class));
         }
     }
 
@@ -84,6 +89,14 @@ public class GrassItem extends ItemStack {
         this.rarity = rarity;
     }
 
+    public int[] getEnchants() {
+        return enchants;
+    }
+
+    public void setEnchants(int[] enchants) {
+        this.enchants = enchants;
+    }
+
     public ItemTag readTag(Class tagClass) {
         for(ItemTag tag: getTags()) {
             if(tagClass.isAssignableFrom(tag.getClass())) {
@@ -107,6 +120,8 @@ public class GrassItem extends ItemStack {
         JsonArray tagArray = new JsonArray();
         tags.forEach( tag -> tagArray.add(new JsonParser().parse(tagGson.toJson(tag, ItemTag.class))));
         json.add("tags", tagArray);
+        // Enchantの書き込み
+        json.add("enchant", gson.toJsonTree(getEnchants()).getAsJsonArray());
 
         List<String> lore = new ArrayList<>();
         lore.add(String.valueOf(this.id));
