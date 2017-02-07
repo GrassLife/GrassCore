@@ -3,6 +3,7 @@ package life.grass.grasscore;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import life.grass.grasscore.entity.EntityDeathEventGC;
+import life.grass.grasscore.housing.event.HousingEvent;
 import life.grass.grasscore.item.GrassItem;
 import life.grass.grasscore.item.ItemPacketRewriter;
 import life.grass.grasscore.item.tags.Armor;
@@ -48,6 +49,7 @@ public class GrassCore extends JavaPlugin implements CommandExecutor {
         getServer().getPluginManager().registerEvents(new PlayerFishingEventGC(), this);
         getServer().getPluginManager().registerEvents(new EntityDeathEventGC(), this);
         getServer().getPluginManager().registerEvents(new MiningEventGC(), this);
+        getServer().getPluginManager().registerEvents(new HousingEvent(), this);
         protocolManager = ProtocolLibrary.getProtocolManager();
         ItemPacketRewriter.getInstance().addListener(protocolManager, this);
         dataSaveTask = this.getServer().getScheduler().runTaskTimer(this, new DataSaveTimer(this), 0L, 20L*60*10);
